@@ -1,4 +1,10 @@
+package JUnit;
 import org.junit.Test;
+
+import Eksamen.Array2D;
+import Eksamen.IArray2D;
+import Eksamen.Position;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -8,7 +14,7 @@ public class Array2DTest {
 
     @Test
     public void testGetWidth() {
-        Array2D array = new Array2D<String>(10, 20);
+        IArray2D<String> array = new Array2D<String>(10, 20);
 
         assertEquals(10, array.getHeight());
         assertEquals(20, array.getWidth());
@@ -16,7 +22,7 @@ public class Array2DTest {
 
     @Test
     public void testThatAnElementIsAddedToTheGivenPosition() {
-        Array2D array = new Array2D<String>(20, 20);
+        IArray2D<String> array = new Array2D<String>(20, 20);
         Position pos1 = new Position(10, 10), pos2 = new Position(12, 12);
 
 
@@ -29,7 +35,7 @@ public class Array2DTest {
 
     @Test
     public void testThatOverridingAnExistingElementWorks() {
-        Array2D array = new Array2D<String>(20, 20);
+        IArray2D<String> array = new Array2D<String>(20, 20);
         Position pos1 = new Position(10, 10);
 
         array.setPosition(pos1, "Kristian");
@@ -40,7 +46,7 @@ public class Array2DTest {
 
     @Test
     public void testThatGettingAnEmptyPositionReturnsNull() {
-        Array2D array = new Array2D<String>(20, 20);
+        IArray2D<String> array = new Array2D<String>(20, 20);
         Position pos = new Position(10, 10), otherPos = new Position(5, 5);
 
         array.setPosition(pos, "Kristian");

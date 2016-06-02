@@ -1,3 +1,4 @@
+package Eksamen;
 /**
  * Grensesnitt for en 2D-tabell
  */

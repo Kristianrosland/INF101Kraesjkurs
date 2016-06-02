@@ -1,3 +1,4 @@
+package Eksamen;
 /**
  * Retning, horisontal eller vertikal
  */

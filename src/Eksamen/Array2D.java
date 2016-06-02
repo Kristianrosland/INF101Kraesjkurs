@@ -1,3 +1,4 @@
+package Eksamen;
 /**
  * Generisk 2D-tabell
  */

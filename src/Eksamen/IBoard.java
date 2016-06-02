@@ -1,3 +1,4 @@
+package Eksamen;
 /**
  * Brett til ordspillet
  */

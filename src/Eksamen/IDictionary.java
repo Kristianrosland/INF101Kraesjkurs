@@ -1,3 +1,4 @@
+package Eksamen;
 /**
  ** Ordliste som holder rede på gyldige ord
  */
