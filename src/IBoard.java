@@ -27,4 +27,5 @@ public interface IBoard {
      * @throws Exception 
      */
     void putWord(Position pos, Direction dir, String letters) throws Exception;
+
 }
