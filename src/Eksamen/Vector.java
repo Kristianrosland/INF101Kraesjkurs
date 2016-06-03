@@ -5,6 +5,17 @@ import java.util.Arrays;
 public class Vector implements IVector {
 
 	/**
+	 * OPPGAVE 3A.
+	 *
+	 *	FORKRAV:
+	 * 		size(): ingen forkrav
+	 * 		get(index): 0 <= index < size()
+	 * 		add/sub/mul/div: vektorene må ha samme size()
+	 * 		div: vektoren man deler på må ikke inneholde 0
+	 * 		(dvs., med flyttall vil dette i prinsippet gå bra, fordi man får ± uendelig som resultet – men å dele 0 på 0 vil fremdeles være et problem)
+	 */
+
+	/**
 	 * Vector-data, ikke null
 	 */
 	private double[] data;
@@ -13,7 +24,12 @@ public class Vector implements IVector {
 		if (elements == null || elements.length == 0) {
 			throw new IllegalArgumentException("Elements kan ikke være tom eller null");
 		}
+
+		//Mutable version
 		data = elements;
+
+		//Immutable version
+		//data = elements.clone();
 	}
 
 	@Override

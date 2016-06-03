@@ -18,6 +18,8 @@ import Eksamen.Position;
 public class BoardTest {
 	IDictionary dict;
 
+	/** OPPGAVE 2H **/
+
 	@Before
 	public void setUp() throws Exception {
 		dict = new IDictionary() {

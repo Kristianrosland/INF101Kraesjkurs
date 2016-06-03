@@ -5,18 +5,31 @@ import java.util.Set;
 
 public class Board implements IBoard {
 
+	/** OPPGAVE 2A. */
 	private IArray2D<Character> data;
 	private IDictionary dict;
 
 	public Board(int height, int width, IDictionary dict) {
-		data = new Array2D<>(height, width);
+		data = new Array2D<Character>(height, width);
 		this.dict = dict;
 	}
 
+
+	/** OPPGAVE 2B.
+	 *
+	 *		Datainvariant for et gyldig brett:
+	 *			- Høyde og bredde er større enn 1
+	 *			- data != null og dict != null
+	 *			- Alle ord som er plassert på brettet er gyldige ord i følge dict
+	 *
+	 * 		(Her trenger man ikke skrive kode i det hele tatt, ettersom oppgaven sier ".. med ord eller pseudokode")
+	 **/
 	public void checkstate() {
-		if (data == null || dict == null) {
+		if (data == null || dict == null || getWidth() <= 1 || getHeight() <= 1) {
 			throw new IllegalArgumentException("Board eller dict er feil");
 		}
+
+		//Sjekker at alle ord på brettet er gyldig.
 		for (int i = 0; i < data.getHeight(); i++) {
 			for (int j = 0; j < data.getWidth(); j++) {
 				if (!dict.isValidWord(getWord(new Position(i, j), Direction.HORIZONTAL))) {
@@ -29,11 +42,9 @@ public class Board implements IBoard {
 		}
 	}
 
-	@Override
-	public int getWidth() {
-		return data.getWidth();
-	}
-
+	/**
+	 * 	Hjelpemetoder i OPPGAVE 2C
+     */
 	private Position findStart(Position pos, Direction dir) {
 		Position start = pos;
 		Character character = data.getPosition(pos);
@@ -69,11 +80,7 @@ public class Board implements IBoard {
 		return builder.toString();
 	}
 
-	@Override
-	public int getHeight() {
-		return data.getHeight();
-	}
-
+	/** OPPGAVE 2C **/
 	@Override
 	public String getWord(Position pos, Direction dir) {
 		Position start = findStart(pos, dir);
@@ -87,6 +94,7 @@ public class Board implements IBoard {
 		return null;
 	}
 
+	/** OPPGAVE 2F **/
 	@Override
 	public void putWord(Position pos, Direction dir, String letters) {
 		IArray2D<Character> backup = data.copy();
@@ -102,12 +110,16 @@ public class Board implements IBoard {
 					throw new IllegalWordException();
 				}
 			}
-		} catch (IllegalWordException | InvalidPlacementException e) {
+		} catch (IllegalWordException e) {
+			data = backup;
+			throw e;
+		} catch(InvalidPlacementException e) {
 			data = backup;
 			throw e;
 		}
 	}
 
+	/** OPPGAVE 2D **/
 	private void putLetters(Position pos, Direction dir, String letters) throws InvalidPlacementException {
 		Position nextPos = pos;
 		for (int i = 0; i < letters.length(); i++) {
@@ -129,6 +141,8 @@ public class Board implements IBoard {
 		}
 	}
 
+
+	/** OPPGAVE 2E **/
 	private Set<String> getXWords(Position start, Direction dir, int length) {
 		Set<String> result = new HashSet<String>();
 		Direction xDir = dir.rotate();
@@ -143,6 +157,12 @@ public class Board implements IBoard {
 		return result;
 	}
 
+	/** OPPGAVE 2G
+	 * 		putWord() opprettholder datainvarianten, fordi den ikke gjør endringer på brettet som kan føre til at
+	 * 		datainvarianten brytes: den sjekker ordet den puttet inn, og alle andre tegnsekvenser ordet kommer
+	 * 		i kontakt med.
+     */
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -154,7 +174,15 @@ public class Board implements IBoard {
 		}
 		return builder.toString();
 	}
-	
-	
+
+	@Override
+	public int getHeight() {
+		return data.getHeight();
+	}
+
+	@Override
+	public int getWidth() {
+		return data.getWidth();
+	}
 
 }

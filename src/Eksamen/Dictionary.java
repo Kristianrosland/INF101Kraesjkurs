@@ -4,7 +4,7 @@ public class Dictionary implements IDictionary {
 
 	@Override
 	public boolean isValidWord(String word) {
-		// TODO Auto-generated method stub
+		//Vi later som alle ord finner i ordboken.
 		return true;
 	}
 

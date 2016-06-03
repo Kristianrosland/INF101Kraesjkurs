@@ -5,6 +5,19 @@ import java.util.List;
 
 public class Oppgave1 {
 
+    /**
+     *    Oppgave 1. Finn ut hva som blir printet
+     *
+     *    Svar: 1, 5, 5
+     *
+     *    x = 1 fordi at foo(int a) bare endrer på den lokale variabelen a. Når vi sender inn en primitiv type til en metode,
+     *    sender vi bare inn en kopi av verdien, ikke en peker. Derfor skjer endringen kun lokalt.
+     *
+     *    I metodene bar() og baz() sender vi derimot inn pekere til objekter. Både arrays[] og ArrayLists er objekter. Når vi
+     *    sender inn pekere, er det samme objekt vi jobber med inni metoden. Derfor blir y[0] = 5 og z.get(0) = 5
+     *
+     */
+
     public static void main(String[] args){
         int x = 1;
         int[] y = {1,2,3};
@@ -12,10 +25,8 @@ public class Oppgave1 {
         foo(x);
         bar(y);
         baz(z);
-        System.out.printf("%d, %d, %d\n", x, y[0], z.get(0));
-        //baz(new ArrayList<Integer>(z));
-        //System.out.printf("%d, %d, %d\n", x, y[0], z.get(0));
 
+        System.out.printf("%d, %d, %d\n", x, y[0], z.get(0));
     }
 
 
